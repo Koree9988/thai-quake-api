@@ -63,7 +63,8 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
       return next(params);
     });
 
-    this.$on('query' as any, (e: any) => {
+    // this.$on('query' as any, (e: any) => {
+    (this.$on as any)('query', (e: any) => {
       const duration = `${e.duration} ms`;
       const msg = duration + ' ' + e.query;
 
@@ -76,7 +77,8 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 
   async enableShutdownHooks(app: INestApplication) {
-    this.$on('beforeExit', async () => {
+    // this.$on('beforeExit', async () => {
+    (this.$on as any)('beforeExit', async () => {
       await app.close();
     });
   }

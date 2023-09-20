@@ -1,8 +1,7 @@
 import { Global, Module } from '@nestjs/common';
-import { ContextService } from './context.service';
+// import { ContextService } from './context.service';
 import { PrismaService } from './prisma.service';
 import { UtilsService } from './utils.service';
-import { SSHTunnelService } from './sshtunnel.service';
 import { EnvironmentConfigService } from './config.service';
 import { ConfigModule } from '@nestjs/config';
 
@@ -11,16 +10,14 @@ import { ConfigModule } from '@nestjs/config';
   imports: [ConfigModule],
   providers: [
     UtilsService,
-    ContextService,
+    // ContextService,
     PrismaService,
-    SSHTunnelService,
     EnvironmentConfigService,
   ],
   exports: [
     UtilsService,
-    ContextService,
+    // ContextService,
     PrismaService,
-    SSHTunnelService,
     EnvironmentConfigService,
   ],
 })

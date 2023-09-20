@@ -14,6 +14,22 @@ export class findAllFaultlineRequest extends GetAllDto {
   faultId?: number;
 }
 
-export class CreateFaultlineRequest {}
+export class CreateFaultDataRequest {
+  @ApiProperty({ type: Number, required: true })
+  @IsNumber()
+  magnitude: number;
+
+  @ApiProperty({ type: String, required: true })
+  @IsString()
+  dateUtc: string;
+
+  @ApiProperty({ type: Number, required: true })
+  @IsNumber()
+  faultId: number;
+
+  @ApiProperty({ type: Number, required: true })
+  @IsNumber()
+  rawDataId: number;
+}
 
 export class UpdateFaultlineRequest {}
