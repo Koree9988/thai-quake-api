@@ -1,11 +1,11 @@
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = ["views"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model faultData {
@@ -14,7 +14,7 @@ model faultData {
   dateUtc   DateTime  @map("date_utc")
   faultId   Int?      @map("fault_id")
   createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt() @map("updated_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
   rawDataId Int       @map("raw_data_id")
   faults    faults?   @relation(fields: [faultId], references: [id])
@@ -27,11 +27,10 @@ model faults {
   id        Int         @id @default(autoincrement())
   name      String      @default("Unknown") @db.VarChar(255)
   createdAt DateTime    @default(now()) @map("created_at")
-  updatedAt DateTime    @updatedAt() @map("updated_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
   deletedAt DateTime?   @map("deleted_at")
+  faultArea faultArea?
   faultData faultData[]
-  // view_fault_data view_fault_data[]
-  faultArea faultArea[]
 }
 
 model rawData {
@@ -48,7 +47,7 @@ model rawData {
   centerEn      String?     @map("center_en") @db.VarChar
   severityLevel Int         @default(0) @map("severity_level")
   createdAt     DateTime    @default(now()) @map("created_at")
-  updatedAt     DateTime    @updatedAt() @map("updated_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
   deletedAt     DateTime?   @map("deleted_at")
   faultData     faultData[]
 
@@ -58,24 +57,34 @@ model rawData {
 model faultArea {
   id        Int       @id @default(autoincrement())
   faultId   Int       @unique @default(0) @map("fault_id")
-  faults    faults    @relation(fields: [faultId], references: [id])
   lats      String?
   longs     String?
   utmsX     String?   @map("utms_x")
   utmsY     String?   @map("utms_y")
   createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt() @map("updated_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
+  faults    faults    @relation(fields: [faultId], references: [id])
 
   @@map("fault_area")
 }
 
-// view view_fault_data {
-//   id         Int      @id @default(autoincrement())
-//   magnitute  Float
-//   date_utc   DateTime @db.Timestamp(6)
-//   fault_id   Int?
-//   created_at DateTime @db.Timestamp(6)
-//   updated_at DateTime @db.Timestamp(6)
-//   faults     faults?  @relation(fields: [fault_id], references: [fault_id])
-// }
+model user {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  role        Role      @default(PAID_USER)
+  userName    String    @unique @map("user_name")
+  password    String
+  displayName String    @map("display_name")
+  email       String?   @unique
+  phoneNumber String?   @unique @map("phone_number")
+}
+
+enum Role {
+  ADMIN
+  SYSTEM_ADMIN
+  GUESS_USER
+  PAID_USER
+}

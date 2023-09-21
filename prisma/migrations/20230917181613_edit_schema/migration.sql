@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "fault_data" ALTER COLUMN "date_utc" SET DATA TYPE TIMESTAMP(3),
-ALTER COLUMN "deleted_at" SET DATA TYPE TIMESTAMP(3);

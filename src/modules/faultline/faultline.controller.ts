@@ -37,7 +37,7 @@ export class FaultlineController {
 
   @Get()
   findAll(@Query() query: findAllFaultlineRequest) {
-    this.faultlineService.getClassForPoint(1, 2);
+    // this.faultlineService.getClassForPoint(1, 2);
     return this.faultlineService.findAll(query);
   }
 
