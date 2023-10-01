@@ -2,22 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { getPageInformation, getSort, getPagination } from 'src/base/internal';
 import { PrismaService } from 'src/core/prisma.service';
-import { findAllFaultlineRequest } from './faultline.request';
+import { findAllFaultGroupRequest } from './fault-group.request';
 
 @Injectable()
-export class FaultlineRepository {
+export class FaultGroupRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  query(query: findAllFaultlineRequest) {
+  query(query: findAllFaultGroupRequest) {
     const where: Prisma.faultsWhereInput = {};
     if (query.faultName)
       where.name = { contains: query.faultName, mode: 'insensitive' };
     if (query.faultId) where.id = query.faultId;
-
     return where;
   }
 
-  async findAllFaultByQuery(query: findAllFaultlineRequest) {
+  async findAllFaultByQuery(query: findAllFaultGroupRequest) {
     const { limit, skip } = getPageInformation(query.limit, query.page);
     const order = getSort(query.sort, query.reverse);
     const where = this.query(query);
@@ -40,7 +39,7 @@ export class FaultlineRepository {
     };
     return response;
   }
-  async findAllDataByQuery(query: findAllFaultlineRequest) {
+  async findAllDataByQuery(query: findAllFaultGroupRequest) {
     const { limit, skip } = getPageInformation(query.limit, query.page);
     const order = getSort(query.sort, query.reverse);
     const where = this.query(query);
@@ -51,9 +50,6 @@ export class FaultlineRepository {
       orderBy: order,
       take: limit,
       skip: skip,
-      // include: {
-      //   vehicle: true,
-      // },
     });
     const [count, entities] = await Promise.all([countStmt, queryStmt]);
     const response = {

@@ -1,0 +1,530 @@
+[
+  {
+    "FAULT_NAME": "KHLONG MARUI",
+    "FAULT_ID": 1,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 10,
+        "lONGITUTE": 99.7,
+        "X": 576719,
+        "Y": 1105494
+      },
+      {
+        "LATITUTE": 9.5,
+        "lONGITUTE": 100,
+        "X": 664656,
+        "Y": 1050487
+      },
+      {
+        "LATITUTE": 6.5,
+        "lONGITUTE": 98,
+        "X": 389430,
+        "Y": 718585
+      },
+      {
+        "LATITUTE": 8,
+        "lONGITUTE": 97,
+        "X": 279558,
+        "Y": 884833
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MAE CHAN",
+    "FAULT_ID": 2,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 20.3,
+        "lONGITUTE": 99.1,
+        "X": 510441,
+        "Y": 2244683
+      },
+      {
+        "LATITUTE": 20.5,
+        "lONGITUTE": 100.6,
+        "X": 666850,
+        "Y": 2267629
+      },
+      {
+        "LATITUTE": 19.7,
+        "lONGITUTE": 99.2,
+        "X": 520960,
+        "Y": 2178296
+      },
+      {
+        "LATITUTE": 20,
+        "lONGITUTE": 98.8,
+        "X": 479079,
+        "Y": 2211494
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MAE HONG SON",
+    "FAULT_ID": 3,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 20,
+        "lONGITUTE": 98,
+        "X": 395391,
+        "Y": 2211794
+      },
+      {
+        "LATITUTE": 18.7,
+        "lONGITUTE": 98.2,
+        "X": 436737,
+        "Y": 2067740
+      },
+      {
+        "LATITUTE": 17.3,
+        "lONGITUTE": 98.6,
+        "X": 457491,
+        "Y": 1912787
+      },
+      {
+        "LATITUTE": 18,
+        "lONGITUTE": 97.2,
+        "X": 309422,
+        "Y": 1991111
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MAE ING",
+    "FAULT_ID": 4,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 20.5,
+        "lONGITUTE": 100.6,
+        "X": 666850,
+        "Y": 2267629
+      },
+      {
+        "LATITUTE": 19.5,
+        "lONGITUTE": 100.7,
+        "X": 678404,
+        "Y": 2157037
+      },
+      {
+        "LATITUTE": 19.2,
+        "lONGITUTE": 100.2,
+        "X": 626155,
+        "Y": 2123392
+      },
+      {
+        "LATITUTE": 19.9,
+        "lONGITUTE": 100,
+        "X": 604675,
+        "Y": 2200726
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MOEI",
+    "FAULT_ID": 5,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 18,
+        "lONGITUTE": 97.2,
+        "X": 309422,
+        "Y": 1991111
+      },
+      {
+        "LATITUTE": 17.3,
+        "lONGITUTE": 98.6,
+        "X": 457491,
+        "Y": 1912787
+      },
+      {
+        "LATITUTE": 16.9,
+        "lONGITUTE": 99.3,
+        "X": 531950,
+        "Y": 1868517
+      },
+      {
+        "LATITUTE": 16.5,
+        "lONGITUTE": 100,
+        "X": 606726,
+        "Y": 1824508
+      },
+      {
+        "LATITUTE": 16.2,
+        "lONGITUTE": 98.2,
+        "X": 414490,
+        "Y": 1791225
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MAE THA",
+    "FAULT_ID": 6,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 20,
+        "lONGITUTE": 98.8,
+        "X": 479079,
+        "Y": 2211494
+      },
+      {
+        "LATITUTE": 19.7,
+        "lONGITUTE": 99.2,
+        "X": 520960,
+        "Y": 2178296
+      },
+      {
+        "LATITUTE": 19.4,
+        "lONGITUTE": 99.4,
+        "X": 541999,
+        "Y": 2145136
+      },
+      {
+        "LATITUTE": 18,
+        "lONGITUTE": 99.2,
+        "X": 521173,
+        "Y": 1990197
+      },
+      {
+        "LATITUTE": 18.1,
+        "lONGITUTE": 98.5,
+        "X": 447098,
+        "Y": 2001321
+      },
+      {
+        "LATITUTE": 18.7,
+        "lONGITUTE": 98.4,
+        "X": 436737,
+        "Y": 2067740
+      },
+      {
+        "LATITUTE": 18.8,
+        "lONGITUTE": 98.7,
+        "X": 468387,
+        "Y": 2078725
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "THOEN",
+    "FAULT_ID": 7,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 19.2,
+        "lONGITUTE": 100.2,
+        "X": 626155,
+        "Y": 2123392
+      },
+      {
+        "LATITUTE": 18.5,
+        "lONGITUTE": 100.8,
+        "X": 690034,
+        "Y": 2046452
+      },
+      {
+        "LATITUTE": 16.9,
+        "lONGITUTE": 99.3,
+        "X": 531950,
+        "Y": 1868517
+      },
+      {
+        "LATITUTE": 17.3,
+        "lONGITUTE": 98.6,
+        "X": 457491,
+        "Y": 1912787
+      },
+      {
+        "LATITUTE": 18,
+        "lONGITUTE": 99.2,
+        "X": 521173,
+        "Y": 1990197
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "PHETCHABUN",
+    "FAULT_ID": 8,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 18.2,
+        "lONGITUTE": 101.5,
+        "X": 764425,
+        "Y": 2014116
+      },
+      {
+        "LATITUTE": 17.2,
+        "lONGITUTE": 101.9,
+        "X": 808466,
+        "Y": 1903990
+      },
+      {
+        "LATITUTE": 15.4,
+        "lONGITUTE": 101.7,
+        "X": 789816,
+        "Y": 1704383
+      },
+      {
+        "LATITUTE": 15.5,
+        "lONGITUTE": 100.3,
+        "X": 639440,
+        "Y": 1714052
+      },
+      {
+        "LATITUTE": 17.4,
+        "lONGITUTE": 100.9,
+        "X": 701839,
+        "Y": 1924807
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "PUA",
+    "FAULT_ID": 9,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 19.5,
+        "lONGITUTE": 100.7,
+        "X": 678404,
+        "Y": 2157037
+      },
+      {
+        "LATITUTE": 19.8,
+        "lONGITUTE": 101.2,
+        "X": 730465,
+        "Y": 2190849
+      },
+      {
+        "LATITUTE": 18.9,
+        "lONGITUTE": 101.6,
+        "X": 773888,
+        "Y": 2091777
+      },
+      {
+        "LATITUTE": 18.5,
+        "lONGITUTE": 100.8,
+        "X": 690034,
+        "Y": 2046452
+      },
+      {
+        "LATITUTE": 19.2,
+        "lONGITUTE": 100.2,
+        "X": 626155,
+        "Y": 2123392
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "PHA YAO",
+    "FAULT_ID": 10,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 19.9,
+        "lONGITUTE": 100,
+        "X": 604675,
+        "Y": 2200726
+      },
+      {
+        "LATITUTE": 19.2,
+        "lONGITUTE": 100.2,
+        "X": 626155,
+        "Y": 2123392
+      },
+      {
+        "LATITUTE": 18,
+        "lONGITUTE": 99.2,
+        "X": 521173,
+        "Y": 1990197
+      },
+      {
+        "LATITUTE": 19.4,
+        "lONGITUTE": 99.4,
+        "X": 541999,
+        "Y": 2145136
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "RANONG",
+    "FAULT_ID": 11,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 12.5,
+        "lONGITUTE": 99.5,
+        "X": 554328,
+        "Y": 1381895
+      },
+      {
+        "LATITUTE": 12,
+        "lONGITUTE": 101,
+        "X": 717759,
+        "Y": 1327344
+      },
+      {
+        "LATITUTE": 8,
+        "lONGITUTE": 97,
+        "X": 279558,
+        "Y": 884833
+      },
+      {
+        "LATITUTE": 7.2,
+        "lONGITUTE": 97,
+        "X": 279150,
+        "Y": 796342
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "SI SAWAT",
+    "FAULT_ID": 12,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 16.2,
+        "lONGITUTE": 98.2,
+        "X": 414490,
+        "Y": 1791225
+      },
+      {
+        "LATITUTE": 16.5,
+        "lONGITUTE": 100,
+        "X": 606726,
+        "Y": 1824508
+      },
+      {
+        "LATITUTE": 15.7,
+        "lONGITUTE": 98.2,
+        "X": 414278,
+        "Y": 1735913
+      },
+      {
+        "LATITUTE": 14.2,
+        "lONGITUTE": 99.8,
+        "X": 586320,
+        "Y": 1569993
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "THREE PAGODA",
+    "FAULT_ID": 13,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 15.7,
+        "lONGITUTE": 98.2,
+        "X": 414278,
+        "Y": 1735913
+      },
+      {
+        "LATITUTE": 14.2,
+        "lONGITUTE": 99.8,
+        "X": 586320,
+        "Y": 1569993
+      },
+      {
+        "LATITUTE": 13.2,
+        "lONGITUTE": 99.2,
+        "X": 521671,
+        "Y": 1459262
+      },
+      {
+        "LATITUTE": 14.5,
+        "lONGITUTE": 98,
+        "X": 392242,
+        "Y": 1603260
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "UTTARADIT",
+    "FAULT_ID": 14,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 18.5,
+        "lONGITUTE": 100.8,
+        "X": 690034,
+        "Y": 2046452
+      },
+      {
+        "LATITUTE": 18.2,
+        "lONGITUTE": 101.5,
+        "X": 764425,
+        "Y": 2014116
+      },
+      {
+        "LATITUTE": 17.4,
+        "lONGITUTE": 100.9,
+        "X": 701839,
+        "Y": 1924807
+      },
+      {
+        "LATITUTE": 16.5,
+        "lONGITUTE": 100,
+        "X": 606726,
+        "Y": 1824508
+      },
+      {
+        "LATITUTE": 16.9,
+        "lONGITUTE": 99.3,
+        "X": 531950,
+        "Y": 1868517
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "WIANG HAENG",
+    "FAULT_ID": 15,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 20,
+        "lONGITUTE": 98,
+        "X": 395391,
+        "Y": 2211794
+      },
+      {
+        "LATITUTE": 20,
+        "lONGITUTE": 98.8,
+        "X": 479079,
+        "Y": 2211494
+      },
+      {
+        "LATITUTE": 18.8,
+        "lONGITUTE": 98.7,
+        "X": 468387,
+        "Y": 2078725
+      },
+      {
+        "LATITUTE": 18.7,
+        "lONGITUTE": 98.4,
+        "X": 436737,
+        "Y": 2067740
+      }
+    ]
+  },
+  {
+    "FAULT_NAME": "MAE LAO",
+    "FAULT_ID": 16,
+    "FAULT_AREA": [
+      {
+        "LATITUTE": 19.7,
+        "lONGITUTE": 99.2,
+        "X": 520960,
+        "Y": 2178296
+      },
+      {
+        "LATITUTE": 20.5,
+        "lONGITUTE": 100.6,
+        "X": 666850,
+        "Y": 2267629
+      },
+      {
+        "LATITUTE": 19.9,
+        "lONGITUTE": 100,
+        "X": 604675,
+        "Y": 2200726
+      },
+      {
+        "LATITUTE": 19.4,
+        "lONGITUTE": 99.4,
+        "X": 541999,
+        "Y": 2145136
+      }
+    ]
+  }
+]

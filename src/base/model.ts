@@ -61,3 +61,38 @@ export interface PolygonData {
   fName: string;
   area: number[][];
 }
+
+export type faultEvents = faultEvent[];
+
+export interface faultEvent {
+  dateUtc: string;
+  magnitude: number;
+  lat: number;
+  long: number;
+  utmX: number;
+  utmY: number;
+  depth?: number;
+  phase?: number;
+  centerTh?: string;
+  centerEn?: string;
+  severityLevel?: number;
+  faultId?: number;
+}
+
+export type YearRange = {
+  start: string;
+  end: string;
+};
+
+export type ReplyDataFormat = {
+  x: [];
+  y: [];
+};
+
+export type Point = [number, number];
+export type Polygon = number[][];
+
+export type Record = {
+  dateUtc: Date;
+  magnitude: number;
+};

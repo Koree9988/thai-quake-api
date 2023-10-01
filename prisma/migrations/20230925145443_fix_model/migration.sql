@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "raw_data" ALTER COLUMN "depth" SET DATA TYPE DOUBLE PRECISION;
