@@ -1,12 +1,12 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { User } from '@prisma/client';
+import { user } from '@prisma/client';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ContextService {
-  private _user: User;
+  private _user: user;
 
   // User
-  set user(user: User) {
+  set user(user: user) {
     this._user = user;
   }
   get user() {

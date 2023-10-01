@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model faults {
+  id        Int        @id @default(autoincrement())
+  name      String     @default("Unknown") @db.VarChar(255)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  deletedAt DateTime?  @map("deleted_at")
+  faultArea faultArea?
+  rawData   rawData[]
+}
+
+model rawData {
+  id            Int       @id @default(autoincrement())
+  dateUtc       DateTime  @map("date_utc") @db.Timestamp(6)
+  magnitude     Float     @map("magnitute")
+  lat           Float     @map("lat")
+  long          Float     @map("long")
+  utmX          Int       @map("utm_x")
+  utmY          Int       @map("utm_y")
+  depth         Float?    @map("depth")
+  phase         Int?      @map("phase")
+  centerTh      String?   @map("center_th") @db.VarChar
+  centerEn      String?   @map("center_en") @db.VarChar
+  severityLevel Int       @default(0) @map("severity_level")
+  faultId       Int?      @map("fault_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+  faults        faults?   @relation(fields: [faultId], references: [id])
+
+  @@map("raw_data")
+}
+
+model faultArea {
+  id        Int       @id @default(autoincrement())
+  faultId   Int       @unique @default(0) @map("fault_id")
+  lats      String?
+  longs     String?
+  utmsX     String?   @map("utms_x")
+  utmsY     String?   @map("utms_y")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  faults    faults    @relation(fields: [faultId], references: [id])
+
+  @@map("fault_area")
+}
+
+model user {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+  role        Role      @default(PAID_USER)
+  userName    String    @unique @map("user_name")
+  password    String
+  displayName String    @map("display_name")
+  email       String?   @unique
+  phoneNumber String?   @unique @map("phone_number")
+}
+
+enum Role {
+  ADMIN
+  SYSTEM_ADMIN
+  GUESS_USER
+  PAID_USER
+  NORMAL_USER
+}
