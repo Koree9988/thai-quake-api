@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 // import { ContextService } from './context.service';
 import { PrismaService } from './prisma.service';
-import { UtilsService } from './utils.service';
+// import { UtilsService } from './utils.service';
 import { EnvironmentConfigService } from './config.service';
 import { ConfigModule } from '@nestjs/config';
 
@@ -9,13 +9,13 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [ConfigModule],
   providers: [
-    UtilsService,
+    // UtilsService,
     // ContextService,
     PrismaService,
     EnvironmentConfigService,
   ],
   exports: [
-    UtilsService,
+    // UtilsService,
     // ContextService,
     PrismaService,
     EnvironmentConfigService,

@@ -1,5 +1,5 @@
 # Base image
-FROM node:16
+FROM node:18
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,14 +13,12 @@ RUN npm install
 # Bundle app source
 COPY . .
 
+RUN npm run generate
+
 # Creates a "dist" folder with the production build
 RUN npm run build
 
-RUN npx prisma generate
-
 EXPOSE 3000
 
-RUN npm run start:prod
-
-# # Start the server using the production build
-# CMD [ "node", "dist/main.js" ]
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]

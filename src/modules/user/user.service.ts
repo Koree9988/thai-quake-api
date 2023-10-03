@@ -13,7 +13,7 @@ import {
   UserUpdateRequest,
 } from './user.request';
 import { Role } from '@prisma/client';
-import { UtilsService } from 'src/core/utils.service';
+// import { UtilsService } from 'src/core/utils.service';
 import { ContextService } from 'src/core/context.service';
 import { UserRepository } from './user.repository';
 
@@ -22,7 +22,7 @@ export class UserService {
   private logger = new Logger(UserService.name);
 
   constructor(
-    private readonly utilsSrv: UtilsService,
+    // private readonly utilsSrv: UtilsService,
     private readonly contextSrv: ContextService,
     private readonly prisma: PrismaService,
     private readonly repository: UserRepository,
@@ -33,7 +33,7 @@ export class UserService {
       payload.userName = payload.userName || payload.email;
       payload.displayName = payload.displayName || payload.phoneNumber;
 
-      payload.password = await this.utilsSrv.encryptPassword(payload.password);
+      // payload.password = await this.utilsSrv.encryptPassword(payload.password);
 
       const findUser = await this.prisma.user.findFirst({
         where: {
