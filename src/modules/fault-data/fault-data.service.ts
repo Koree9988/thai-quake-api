@@ -313,6 +313,7 @@ export class FaultDataService {
     });
     if (!rawData)
       return {
+        range: dateVal,
         data: [],
       };
     const data = await rawData.map((result) => [
@@ -320,6 +321,7 @@ export class FaultDataService {
       result.magnitude,
     ]);
     const results = {
+      range: dateVal,
       data: data,
     };
     return results;
