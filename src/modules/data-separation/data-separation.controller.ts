@@ -5,7 +5,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { HttpService } from '@nestjs/axios';
 
 @Controller('data-separation')
-@ApiTags('clasify')
+@ApiTags('classify')
 export class DataSeparationController {
   constructor(
     private readonly dataSeparationService: DataSeparationService,
