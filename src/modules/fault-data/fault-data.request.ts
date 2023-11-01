@@ -3,8 +3,8 @@ import { IsString, IsOptional, IsNumber } from 'class-validator';
 import { GetAllDto } from 'src/base/request';
 
 export class findAllFaultlineRequest extends GetAllDto {
-  @ApiProperty({ type: Number, required: false })
-  @IsNumber()
+  @ApiProperty({ type: String, required: false })
+  @IsString()
   @IsOptional()
   faultId?: number;
 }

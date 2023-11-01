@@ -10,7 +10,7 @@ export class FaultDataRepository {
 
   query(query: findAllFaultlineRequest) {
     const where: Prisma.rawDataWhereInput = {};
-    if (query.faultId) where.faultId = query.faultId;
+    if (query.faultId) where.faultId = Number(query.faultId);
     if (!query.faultId)
       where.faultId = {
         not: null,
