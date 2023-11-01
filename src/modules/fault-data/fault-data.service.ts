@@ -9,7 +9,7 @@ import { faultEvents, YearRange, Point, Polygon } from 'src/base/model';
 import dayjs from 'dayjs';
 import { FaultDataRepository } from './fault-data.repository';
 import FaultLineConvex from 'src/data/convex-hull-data.json';
-import { Prisma } from '@prisma/client';
+import { Prisma, rawData } from '@prisma/client';
 import excistingData from 'src/data/data.json';
 // import { Record } from 'src/base/model';
 
@@ -219,7 +219,7 @@ export class FaultDataService {
           const temp = dateOld.add(range, 'year');
           const valRange = { start, end: temp.format('YYYY-MM-DD') };
           console.log('🚀  valRange:', valRange);
-          const data = await this.findByRanges(id, valRange);
+          const data = await this.findByRangesMaxDay(id, valRange);
           current = temp;
           dataAll.push(data);
         } else {
@@ -229,7 +229,7 @@ export class FaultDataService {
             end: temp.format('YYYY-MM-DD'),
           };
           console.log('🚀  valRange:', valRange);
-          const data = await this.findByRanges(id, valRange);
+          const data = await this.findByRangesMaxDay(id, valRange);
           current = temp;
           dataAll.push(data);
         }
@@ -294,6 +294,41 @@ export class FaultDataService {
     }
   }
 
+  async findByRangesMaxDay(id: number, dateVal: YearRange) {
+    const rawData = await this.prisma.$queryRaw<
+      {
+        date: string;
+        max_magnitude: number;
+      }[]
+    >`
+      SELECT DATE(date_utc) AS date, MAX(magnitute) AS max_magnitude
+      FROM raw_data
+      WHERE fault_id = ${id}
+        AND date_utc >= ${new Date(dateVal.start)}
+        AND date_utc < ${new Date(dateVal.end)}
+      GROUP BY DATE(date_utc)
+    `;
+
+    if (!rawData) {
+      return {
+        range: dateVal,
+        data: [],
+      };
+    }
+
+    const data = rawData.map((result) => [
+      Date.parse(result.date),
+      result.max_magnitude,
+    ]);
+
+    const results = {
+      range: dateVal, //{ start: Date.parse(dateVal.start), end: Date.parse(dateVal.end) },
+      data: data,
+    };
+
+    return results;
+  }
+
   async findByRanges(id: number, dateVal: YearRange) {
     const rawData = await this.prisma.rawData.findMany({
       where: {
@@ -339,6 +374,7 @@ export class FaultDataService {
       select: {
         dateUtc: true,
         magnitude: true,
+        faultId: true,
       },
       orderBy: {
         dateUtc: 'asc',

@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Query,
@@ -27,10 +26,10 @@ export class FaultDataController {
     return this.faultDataService.storeData(createFaultDatumDto);
   }
 
-  // @Post('save')
-  // saveExcisting() {
-  //   return this.faultDataService.storeExcistingData();
-  // }
+  @Post('save')
+  saveExcisting() {
+    return this.faultDataService.storeExcistingData();
+  }
 
   @Get('record')
   record() {
