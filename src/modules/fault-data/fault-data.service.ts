@@ -218,7 +218,7 @@ export class FaultDataService {
         if (index == 0) {
           const temp = dateOld.add(range, 'year');
           const valRange = { start, end: temp.format('YYYY-MM-DD') };
-          console.log('🚀  valRange:', valRange);
+          // console.log('🚀  valRange:', valRange);
           const data = await this.findByRangesMaxDay(id, valRange);
           current = temp;
           dataAll.push(data);
@@ -228,7 +228,7 @@ export class FaultDataService {
             start: current.format('YYYY-MM-DD'),
             end: temp.format('YYYY-MM-DD'),
           };
-          console.log('🚀  valRange:', valRange);
+          // console.log('🚀  valRange:', valRange);
           const data = await this.findByRangesMaxDay(id, valRange);
           current = temp;
           dataAll.push(data);
@@ -476,6 +476,49 @@ export class FaultDataService {
     return inside;
   }
 
+  calculateDistance(point1: Point, point2: Point): number {
+    const dx = point1[0] - point2[0];
+    const dy = point1[1] - point2[1];
+    return Math.abs(Math.sqrt(dx * dx + dy * dy));
+  }
+
+  calculateCentroid(polygon: Polygon): Point {
+    const n = polygon.length;
+    let sumX = 0;
+    let sumY = 0;
+
+    for (let i = 0; i < n; i++) {
+      const p1 = polygon[i];
+      const p2 = polygon[(i + 1) % n];
+
+      const crossProduct = p1[0] * p2[1] - p2[0] * p1[1];
+
+      sumX += (p1[0] + p2[0]) * crossProduct;
+      sumY += (p1[1] + p2[1]) * crossProduct;
+    }
+
+    const area = 0.5 * sumX;
+    const centroidX = (1 / (6 * area)) * sumX;
+    const centroidY = (1 / (6 * area)) * sumY;
+    const centroids: Point = [centroidX, centroidY];
+    return centroids;
+  }
+
+  indexOfMinPositiveNumber(arr: number[]): number {
+    let minPositiveIndex = -1;
+
+    arr.forEach((currentNumber, index) => {
+      if (
+        currentNumber > 0 &&
+        (minPositiveIndex === -1 || currentNumber < arr[minPositiveIndex])
+      ) {
+        minPositiveIndex = index;
+      }
+    });
+
+    return minPositiveIndex;
+  }
+
   isPointInPolygon(point: Point, polygon: Polygon): boolean {
     let isInside = false;
     for (const path of polygon) {
@@ -500,23 +543,60 @@ export class FaultDataService {
     }
     return isInside;
   }
+
+  // classifyFaultEvent(utm_x: number, utm_y: number) {
+  //   try {
+  //     const x = Number(utm_x);
+  //     const y = Number(utm_y);
+  //     const point: Point = [x, y]; // Replace with the point you want to check
+  //     // console.log(this.isPointInPolygon(point, polygon));
+  //     for (let i = 0; i < FaultLineConvex.length; i++) {
+  //       const tempPath: Polygon = FaultLineConvex[i].area;
+  //       const inside = this.insidePolygon(point, tempPath);
+
+  //       if (inside) {
+  //         return {
+  //           inside: true,
+  //           fId: Number(this.findIdByName(FaultLineConvex[i].fName)),
+  //         };
+  //       }
+
+  //     }
+  //     return { inside: false, fId: 0 };
+  //   } catch (error) {
+  //     console.log('🚀  error:class', error);
+  //   }
+  // }
   classifyFaultEvent(utm_x: number, utm_y: number) {
     try {
       const x = Number(utm_x);
       const y = Number(utm_y);
+      let canClassify = false;
+      const listDistance: number[] = [...Array(FaultLineConvex.length)].map(
+        () => 0,
+      );
       const point: Point = [x, y]; // Replace with the point you want to check
       // console.log(this.isPointInPolygon(point, polygon));
       for (let i = 0; i < FaultLineConvex.length; i++) {
         const tempPath: Polygon = FaultLineConvex[i].area;
         const inside = this.insidePolygon(point, tempPath);
+
         if (inside) {
-          return {
-            inside: true,
-            fId: Number(this.findIdByName(FaultLineConvex[i].fName)),
-          };
+          const centroid = this.calculateCentroid(tempPath);
+          const distance = this.calculateDistance(point, centroid);
+          listDistance[i] = distance;
+          canClassify = true;
         }
       }
-      return { inside: false, fId: 0 };
+      if (!canClassify) return { inside: false, fId: 0 };
+      const idx = this.indexOfMinPositiveNumber(listDistance);
+      // console.log('🚀  listDistance:', listDistance);
+      // console.log('🚀  idx:', idx);
+
+      return {
+        inside: true,
+        fId: Number(this.findIdByName(FaultLineConvex[idx].fName)),
+      };
     } catch (error) {
       console.log('🚀  error:class', error);
     }
