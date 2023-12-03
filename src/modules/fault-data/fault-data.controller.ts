@@ -51,6 +51,11 @@ export class FaultDataController {
     return this.faultDataService.getForAnalyze(+id, +range);
   }
 
+  @Get('summary')
+  getOneFaultInfo(@Query('id') id: string, @Query('range') range: string) {
+    return this.faultDataService.getSummaryOfFault(+id, +range);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.faultDataService.getAllData(+id);

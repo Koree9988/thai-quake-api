@@ -204,6 +204,40 @@ export class FaultDataService {
     }
   }
 
+  async getSummaryOfFault(id: number, range: number) {
+    try {
+      const startYear = 2007;
+      const dateOld = dayjs().year(startYear).startOf('year');
+      const start = dateOld.format('YYYY-MM-DD');
+      const now = dayjs();
+      const dayDiff = Number(now.diff(dateOld, 'year'));
+      const numRange = Math.ceil(dayDiff / range);
+      const dataAll = [];
+      let current = dateOld;
+      for (let index = 0; index < numRange; index++) {
+        if (index == 0) {
+          const temp = dateOld.add(range, 'year');
+          const valRange = { start, end: temp.format('YYYY-MM-DD') };
+          const data = await this.findSummaryByRanges(id, valRange);
+          current = temp;
+          dataAll.push(data);
+        } else {
+          const temp = current.add(range, 'year');
+          const valRange = {
+            start: current.format('YYYY-MM-DD'),
+            end: temp.format('YYYY-MM-DD'),
+          };
+          const data = await this.findSummaryByRanges(id, valRange);
+          current = temp;
+          dataAll.push(data);
+        }
+      }
+      return dataAll;
+    } catch (error) {
+      console.log('🚀  error:', error);
+    }
+  }
+
   async getForAnalyze(id: number, range: number) {
     try {
       const startYear = 2007;
@@ -292,6 +326,25 @@ export class FaultDataService {
     } catch (error) {
       console.log('🚀  error:', error);
     }
+  }
+
+  async findSummaryByRanges(id: number, dateVal: YearRange) {
+    const summaryData = await this.prisma.rawData.count({
+      where: {
+        faultId: Number(id),
+        dateUtc: {
+          gte: new Date(dateVal.start),
+          lt: new Date(dateVal.end),
+        },
+      },
+    });
+
+    const results = {
+      range: dateVal,
+      count: summaryData,
+    };
+
+    return results;
   }
 
   async findByRangesMaxDay(id: number, dateVal: YearRange) {
