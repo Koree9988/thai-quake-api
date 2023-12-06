@@ -5,6 +5,7 @@ import { CoreModule } from './core/core.module';
 import { ConfigModule } from '@nestjs/config';
 import { DataSeparationModule } from './modules/data-separation/data-separation.module';
 import { FaultGroupModule } from './modules/fault-group/fault-group.module';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { FaultGroupModule } from './modules/fault-group/fault-group.module';
     FaultlineModule,
     FaultGroupModule,
     FaultDataModule,
+    UserModule,
     CoreModule,
     DataSeparationModule,
   ],

@@ -14,15 +14,14 @@ export class UserRepository {
     if (query.role) where.role = query.role;
 
     if (query.query) {
-      where.OR = [
-        { email: { contains: query.query, mode: 'insensitive' } },
-        { phoneNumber: { contains: query.query, mode: 'insensitive' } },
-        { displayName: { contains: query.query, mode: 'insensitive' } },
-      ];
+      where.email = { contains: query.query, mode: 'insensitive' };
     }
 
-    if (query.displayName)
+    if (query.firebaseUid) where.firebaseUid = query.firebaseUid;
+
+    if (query.displayName) {
       where.displayName = { contains: query.displayName, mode: 'insensitive' };
+    }
 
     return where;
   }

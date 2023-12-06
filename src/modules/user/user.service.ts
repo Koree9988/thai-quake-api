@@ -13,7 +13,7 @@ import {
   UserUpdateRequest,
 } from './user.request';
 import { Role } from '@prisma/client';
-// import { UtilsService } from 'src/core/utils.service';
+import { UtilsService } from 'src/core/utils.service';
 import { ContextService } from 'src/core/context.service';
 import { UserRepository } from './user.repository';
 
@@ -22,7 +22,7 @@ export class UserService {
   private logger = new Logger(UserService.name);
 
   constructor(
-    // private readonly utilsSrv: UtilsService,
+    private readonly utilsSrv: UtilsService,
     private readonly contextSrv: ContextService,
     private readonly prisma: PrismaService,
     private readonly repository: UserRepository,
@@ -30,35 +30,18 @@ export class UserService {
 
   async create(payload: UserCreateRequest) {
     try {
-      payload.userName = payload.userName || payload.email;
-      payload.displayName = payload.displayName || payload.phoneNumber;
-
-      // payload.password = await this.utilsSrv.encryptPassword(payload.password);
-
-      const findUser = await this.prisma.user.findFirst({
+      const user = await this.prisma.user.upsert({
         where: {
-          OR: [{ phoneNumber: payload.phoneNumber }, { email: payload.email }],
+          email: payload.email,
         },
-        select: {
-          phoneNumber: true,
-          email: true,
-        },
-      });
-
-      if (findUser) {
-        const msg = 'user already exists';
-        console.log(findUser);
-
-        this.logger.error(msg);
-        throw new HttpException('user already exists', HttpStatus.BAD_REQUEST);
-      }
-
-      const user = await this.prisma.user.create({
-        data: {
-          ...payload,
-          userName: payload.userName,
+        create: {
+          email: payload.email,
           displayName: payload.displayName,
-          role: Role.GUESS_USER,
+          firebaseUid: payload.firebaseUid,
+        },
+        update: {
+          displayName: payload.displayName,
+          firebaseUid: payload.firebaseUid,
         },
       });
       return user;
@@ -109,7 +92,7 @@ export class UserService {
   async update(id: number, updateData: UserUpdateRequest) {
     try {
       const userAuth = this.contextSrv.user;
-      /// check role
+      // check role
       if (userAuth.role !== Role.ADMIN && userAuth.id !== Number(id)) {
         throw new UnauthorizedException();
       }

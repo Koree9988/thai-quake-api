@@ -14,6 +14,8 @@ model faults {
   updatedAt     DateTime        @updatedAt @map("updated_at")
   deletedAt     DateTime?       @map("deleted_at")
   faultArea     faultArea?
+  lastestEvent  DateTime?       @map("lastest_event")
+  nextEvent     Int?            @map("next_event")
   rawData       rawData[]
   fourierResult fourierResult[]
 }
@@ -60,12 +62,10 @@ model user {
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @updatedAt @map("updated_at")
   deletedAt   DateTime? @map("deleted_at")
-  role        Role      @default(PAID_USER)
-  userName    String    @unique @map("user_name")
-  password    String
+  role        Role      @default(NORMAL_USER)
   displayName String    @map("display_name")
   email       String?   @unique
-  phoneNumber String?   @unique @map("phone_number")
+  firebaseUid String?   @unique @map("firebase_uid")
 }
 
 model fourierResult {
