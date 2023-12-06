@@ -5,6 +5,8 @@ import { UtilsService } from './utils.service';
 import { EnvironmentConfigService } from './config.service';
 import { ConfigModule } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { MailsService } from './mail.service';
+import { UserModule } from 'src/modules/user/user.module';
 
 @Global()
 @Module({
@@ -14,6 +16,7 @@ import { JwtService } from '@nestjs/jwt';
     ContextService,
     PrismaService,
     JwtService,
+    MailsService,
     EnvironmentConfigService,
   ],
   exports: [
@@ -21,6 +24,7 @@ import { JwtService } from '@nestjs/jwt';
     ContextService,
     PrismaService,
     JwtService,
+    MailsService,
     EnvironmentConfigService,
   ],
 })

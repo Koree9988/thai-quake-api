@@ -16,6 +16,7 @@ import { Role } from '@prisma/client';
 import { UtilsService } from 'src/core/utils.service';
 import { ContextService } from 'src/core/context.service';
 import { UserRepository } from './user.repository';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable({ scope: Scope.REQUEST })
 export class UserService {
@@ -26,6 +27,7 @@ export class UserService {
     private readonly contextSrv: ContextService,
     private readonly prisma: PrismaService,
     private readonly repository: UserRepository,
+    private readonly mailService: MailerService,
   ) {}
 
   async create(payload: UserCreateRequest) {
@@ -130,4 +132,30 @@ export class UserService {
       throw new HttpException(error.message, error.status);
     }
   }
+
+  //   async mailSummary() {
+  //     try {
+  //       const registeredUser = await this.prisma.user.findMany({
+  //         where: {
+  //           role: 'NORMAL_USER',
+  //         },
+  //         select: {
+  //           displayName: true,
+  //           email: true,
+  //         },
+  //       });
+
+  //       const subject = 'Test send mail';
+  //       registeredUser.forEach((user) => {
+  //         this.mailService.sendMail({
+  //           to: user.email,
+  //           from: 'thaiquake@gmail.com',
+  //           subject: subject,
+  //           text: 'Mail has send from Thai Quake App',
+  //         });
+  //       });
+  //     } catch (error) {
+  //       console.log('🚀  error:', error);
+  //     }
+  //   }
 }
